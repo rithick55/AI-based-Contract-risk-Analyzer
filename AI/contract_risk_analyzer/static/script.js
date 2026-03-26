@@ -1,12 +1,10 @@
 document.getElementById('analyze-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     const textInput = document.getElementById('contract-text').value;
     const btn = document.getElementById('submit-btn');
     const loading = document.getElementById('loading');
     const results = document.getElementById('results');
-    
-    // UI state updates
     btn.disabled = true;
     loading.classList.remove('hidden');
     results.classList.add('hidden');
@@ -25,17 +23,15 @@ document.getElementById('analyze-form').addEventListener('submit', async (e) => 
         }
         
         const data = await response.json();
-        
-        // Populate Summary
+    
         document.getElementById('summary-text').innerHTML = `<strong>${data.summary}</strong>`;
         
-        // Populate Dependency Tree (simple text representation)
         const treeContainer = document.getElementById('dependency-tree');
         treeContainer.innerHTML = data.dependency_tree.map(node => 
             `{ "word": "${node.word}", "dep": "${node.dep}", "head": "${node.head}" }`
         ).join('<br>');
         
-        // Populate Clauses
+      
         const clausesList = document.getElementById('clauses-list');
         clausesList.innerHTML = ''; // clear previous
         
@@ -43,7 +39,7 @@ document.getElementById('analyze-form').addEventListener('submit', async (e) => 
             const card = document.createElement('div');
             card.className = `clause-card risk-${item.risk_level}`;
             
-            // Build entities HTML
+      
             const entitiesHtml = item.entities.length > 0 
                 ? `<div class="meta-info"><strong>NER Entities:</strong><br> ${item.entities.map(e => `<span class="badge">${e}</span>`).join('')}</div>` 
                 : '<div class="meta-info">No specific entities detected.</div>';
