@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Contract Risk Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <!-- Google Fonts for Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Contract Risk Analyzer</h1>
+            <p>Automated Legal Review System using NLP & ML</p>
+        </header>
+        
+        <main>
+            <section class="input-section">
+                <form id="analyze-form">
+                    <label for="contract-text">Paste Contract Text:</label>
+                    <textarea id="contract-text" placeholder="E.g., The vendor shall indemnify the client against all claims for liability... Furthermore, the governing law is New York. The penalty for breach is $1,000,000." required></textarea>
+                    <button type="submit" id="submit-btn" class="btn">Analyze Contract</button>
+                </form>
+            </section>
+
+            <div id="loading" class="hidden">
+                <div class="spinner"></div>
+                <p>Analyzing text semantics and classifying clauses...</p>
+            </div>
+
+            <section id="results" class="hidden">
+                <div class="summary-card">
+                    <h2>Risk Summary</h2>
+                    <p id="summary-text"></p>
+                </div>
+
+                <h3>Dependency Tree (Sample)</h3>
+                <div id="dependency-tree" class="tree-container"></div>
+
+                <h3>Extracted Clauses</h3>
+                <div id="clauses-list"></div>
+            </section>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
